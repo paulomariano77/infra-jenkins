@@ -1,0 +1,8 @@
+resource_group = ""
+
+tags = {
+    environment = ""
+    owner = "",
+    dataProfile = "",
+    managedBy = ""
+}

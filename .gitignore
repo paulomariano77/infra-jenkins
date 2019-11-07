@@ -1,0 +1,7 @@
+.terraform
+**/env.sh
+**/terraform.tfvars
+**.tfstate**
+.ssh
+ansible/roles/**
+!ansible/roles/requirements.yml

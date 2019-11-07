@@ -1,0 +1,8 @@
+---
+- name: Install jenkins master node
+  hosts: terraform_jenkins_master
+  become: true
+  roles:
+    - name: geerlingguy.java
+    - name: geerlingguy.jenkins
+  tags: master

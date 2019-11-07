@@ -1,0 +1,15 @@
+---
+# required for all azure_rm inventory plugin configs
+plugin: azure_rm
+auth_source: auto
+plain_host_names: true
+
+# fetches VMs from an explicit list of resource groups instead of default all (- '*')
+include_vm_resource_groups:
+  - jenkins-rg
+
+# places host in a group named 'some_tag_X' using the value of the 'sometag' tag on a VM as X, and defaulting to the
+# value 'none' (eg, the group 'some_tag_none') if the 'sometag' tag is not defined for a VM.
+keyed_groups:
+  - prefix: terraform
+    key: tags.ansibleGroup | default('none')
