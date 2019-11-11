@@ -6,3 +6,7 @@
 - name: geerlingguy.jenkins
   src: https://github.com/geerlingguy/ansible-role-jenkins.git
   version: master
+
+- name: lean_delivery.jenkins_slave
+  src: https://github.com/lean-delivery/ansible-role-jenkins-slave.git
+  version: master
