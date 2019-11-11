@@ -35,3 +35,7 @@ az-destroy:
 
 install-jenkins-master:
 	ansible-playbook -i ansible/inventories/azure_rm.yml ansible/playbook_jenkins.yml --tags master
+
+
+install-jenkins-slave:
+	ansible-playbook -i ansible/inventories/azure_rm.yml ansible/playbook_jenkins.yml --tags slave
