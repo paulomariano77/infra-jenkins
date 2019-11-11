@@ -1,0 +1,4 @@
+---
+master_host: "{{ groups['terraform_jenkins_master'][0] | map('extract', hostvars, 'ansible_host') }}"
+master_password: "{{ lookup('env', 'ANSIBLE_JENKINS_ADMIN_PASSWORD') }}"
+slave_agent_name: "{{ inventory_hostname }}"
