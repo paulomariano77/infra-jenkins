@@ -16,16 +16,6 @@ resource "azurerm_subnet" "jenkins_subnet" {
     address_prefix       = "10.0.1.0/24"
 }
 
-# Create public IPs
-resource "azurerm_public_ip" "jenkins_publicip" {
-    name                         = "jenkins-pip"
-    location                     = var.location
-    resource_group_name          = azurerm_resource_group.jenkins_rg.name
-    allocation_method            = "Dynamic"
-
-    tags = var.tags
-}
-
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "jenkins_nsg" {
     name                = "jenkins-nsg"
@@ -33,7 +23,7 @@ resource "azurerm_network_security_group" "jenkins_nsg" {
     resource_group_name = azurerm_resource_group.jenkins_rg.name
 
     security_rule {
-        name                       = "SSH"
+        name                       = "AllowSSH"
         priority                   = 1001
         direction                  = "Inbound"
         access                     = "Allow"
@@ -44,21 +34,16 @@ resource "azurerm_network_security_group" "jenkins_nsg" {
         destination_address_prefix = "*"
     }
 
-    tags = var.tags
-}
-
-# Create network interface
-resource "azurerm_network_interface" "jenkins_nic" {
-    name                      = "jenkins-master-nic"
-    location                  = var.location
-    resource_group_name       = azurerm_resource_group.jenkins_rg.name
-    network_security_group_id = azurerm_network_security_group.jenkins_nsg.id
-
-    ip_configuration {
-        name                          = "jenkins-master-nic-config"
-        subnet_id                     = azurerm_subnet.jenkins_subnet.id
-        private_ip_address_allocation = "Dynamic"
-        public_ip_address_id          = azurerm_public_ip.jenkins_publicip.id
+    security_rule {
+        name                       = "AllowJenkinsHTTP"
+        priority                   = 1002
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "8080"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
     }
 
     tags = var.tags
