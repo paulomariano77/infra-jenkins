@@ -6,3 +6,11 @@
     - name: geerlingguy.java
     - name: geerlingguy.jenkins
   tags: master
+
+- name: Install jenkins slave node
+  hosts: terraform_jenkins_slave
+  become: true
+  roles:
+    - name: geerlingguy.java
+    - name: lean_delivery.jenkins_slave
+  tags: slave
