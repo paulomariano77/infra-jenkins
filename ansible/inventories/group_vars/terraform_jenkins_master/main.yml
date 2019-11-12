@@ -1,5 +1,5 @@
 ---
-jenkins_hostname: "{{ inventory_hostname }}"
+jenkins_hostname: "{{ hostvars[groups['terraform_jenkins_master'][0]]['ansible_host'] }}"
 jenkins_http_port: 8080
 jenkins_admin_username: admin
 jenkins_admin_password: "{{ lookup('env', 'ANSIBLE_JENKINS_ADMIN_PASSWORD') }}"

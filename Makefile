@@ -38,4 +38,4 @@ install-jenkins-master:
 
 
 install-jenkins-slave:
-	ansible-playbook -i ansible/inventories/azure_rm.yml ansible/playbook_jenkins.yml --tags slave
+	ansible-playbook -i ansible/inventories/azure_rm.yml ansible/playbook_jenkins.yml --tags slave -vvv
