@@ -3,3 +3,5 @@ jenkins_hostname: "localhost"
 jenkins_http_port: 8080
 jenkins_admin_username: admin
 jenkins_admin_password: "{{ lookup('env', 'ANSIBLE_JENKINS_ADMIN_PASSWORD') }}"
+jenkins_plugins:
+  - ssh-slaves
