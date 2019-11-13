@@ -1,6 +1,8 @@
 ---
 master_host: "{{ hostvars[groups['terraform_jenkins_master'][0]]['ansible_host'] }}"
+master_username: admin
+master_password: "{{ lookup('env', 'ANSIBLE_JENKINS_ADMIN_PASSWORD') }}"
 slave_agent_name: "{{ inventory_hostname }}"
-slave_linux_jenkins_cred_id: new_cred
-slave_linux_jenkins_username: new_user
-slave_linux_jenkins_public_key:
+slave_linux_jenkins_username: jenkins
+slave_linux_user_group: jenkins
+slave_linux_jenkins_public_key: "{{ lookup('file', '../.ssh/id_rsa.pub') }}"
