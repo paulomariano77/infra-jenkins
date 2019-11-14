@@ -5,6 +5,19 @@
   roles:
     - name: geerlingguy.java
     - name: geerlingguy.jenkins
+  tasks:
+    - name: Copy ssh keys
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        mode: 0600
+        owner: jenkins
+        group: jenkins
+      with_items:
+        - src: '../.ssh/id_rsa'
+          dest: '/home/jenkins/.ssh/id_rsa'
+        - src: '../.ssh/id_rsa.pub'
+          dest: '/home/jenkins/.ssh/id_rsa.pub'
   tags: master
 
 - name: Install jenkins slave node
