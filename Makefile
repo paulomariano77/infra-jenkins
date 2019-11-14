@@ -2,7 +2,7 @@ azure_username=${ARM_USER}
 azure_password=${ARM_PASSWORD}
 
 
-all: ssh-keygen update-roles az-login az-init az-plan az-apply
+all: ssh-keygen update-roles az-login az-init az-plan az-apply install-jenkins-master install-jenkins-slave
 
 
 update-roles:
